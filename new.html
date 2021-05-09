@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <title>JSON TO HTML FOR STOCKS</title>
+    <meta charset="utf-8"/>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        th {
+            color: #fff;
+        }
+    </style>
+
+    <table class="whole-data">
+        <tr class="classifications">
+            <th>Time</th>
+            <th>Output</th>
+            <th>Link</th>
+        </tr>
+        <tbody id="table">
+
+        </tbody>
+    </table>
+
+    <script>
+        
+        var arr = []
+        function loaddata() {
+            loadJSON('test.json', getData);
+        }
+
+        function getData(data) {
+            arr = data;
+        }
+
+        tablebuilder(arr);
+
+        function tablebuilder(data) {
+            var table = document.getElementById('table')
+            for (var i = 0; i < data.length; i++) {
+                var row = `<tr>
+							<td>${data[i].time}</td>
+							<td>${data[i].output}</td>
+							<td>${data[i].link}</td>
+					  </tr>`
+                table.innerHTML += row
+            }
+        }
+    </script>
+</body>
+
+</html>
